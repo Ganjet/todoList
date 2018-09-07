@@ -21,17 +21,14 @@
           <ion-checkbox checked="false" [(ngModel)]="todo.completed"></ion-checkbox>
         </ion-item>
         <ion-item-options>
-          <!-- <ion-label text-right> -->
 
           <button ion-button color="dark" (click)="openBasicModal(i,todo)">
             <ion-icon name="create"></ion-icon>Edit
           </button>
-          <!-- <button ion-button color="danger" (click)="deleteTodo(i)"> -->
           <button ion-button color="danger" (click)="presentConfirm(i)">
             <ion-icon name="trash"></ion-icon>
             Delete
           </button>
-          <!-- </ion-label> -->
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

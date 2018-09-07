@@ -34,10 +34,7 @@ export class HomePage {
 
   openBasicModal(todo, item) {
     this.myParam = todo;
-    let myModal = this.modalCtrl.create(ListPage, { 'myParam': this.myParam, 'item': item });
-    myModal.onDidDismiss(data => {
-    });
-    myModal.present();
+    let myModal = this.navCtrl.push(ListPage, { 'myParam': this.myParam, 'item': item });
   }
   presentConfirm(i) {
     let alert = this.alertCtrl.create({
