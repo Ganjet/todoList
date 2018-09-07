@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController, AlertController } from 'ionic-angular';
 import { ListPage } from '../list/list';
 import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 @Component({
@@ -13,7 +13,7 @@ export class HomePage {
   completed: boolean;
   myParam;
   count = 1;
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private todoService: TodoServiceProvider) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private todoService: TodoServiceProvider,public alertCtrl: AlertController) {
     this.todos = this.todoService.getTodo();
   }
 
@@ -39,5 +39,26 @@ export class HomePage {
     myModal.onDidDismiss(data => {
     });
     myModal.present();
+  }
+  presentConfirm(i) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm delete',
+      message: 'Do you want delete this list?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteTodo(i)
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

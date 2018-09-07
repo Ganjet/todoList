@@ -4,7 +4,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="addTodo($event)" class="textfield" name="newTodo"  placeholder="Add new list"> </ion-input>
+  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="addTodo($event)" class="textfield" name="newTodo" placeholder="Add new list">
+  </ion-input>
   <button ion-button type="submit" (click)="addTodo($event)" [disabled]="newTodo===''">Add Todo </button>
   <ion-item [hidden]="newTodo">
     Type in a new todo...
@@ -14,18 +15,25 @@
   </ion-item>
   <div>
     <ion-list>
-      <ion-item *ngFor="let todo of todoService.todos; let i=index">
-        <ion-label class="todos" [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</ion-label>
-        <ion-checkbox checked="false" [(ngModel)]="todo.completed"></ion-checkbox>
-        <ion-label text-right>
-          <button ion-button color="dark" tappable (click)="deleteTodo(i)">
-            <ion-icon name="close-circle"></ion-icon>
+      <ion-item-sliding *ngFor="let todo of todoService.todos; let i=index">
+        <ion-item>
+          <ion-label class="todos" [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</ion-label>
+          <ion-checkbox checked="false" [(ngModel)]="todo.completed"></ion-checkbox>
+        </ion-item>
+        <ion-item-options>
+          <!-- <ion-label text-right> -->
+
+          <button ion-button color="dark" (click)="openBasicModal(i)">
+            <ion-icon name="create"></ion-icon>Edit
           </button>
-          <button ion-button color="dark" tappable (click)="openBasicModal(i)">
-            <ion-icon name="create"></ion-icon>
+          <!-- <button ion-button color="danger" (click)="deleteTodo(i)"> -->
+          <button ion-button color="danger" (click)="presentConfirm(i)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
           </button>
-        </ion-label>
-      </ion-item>
+          <!-- </ion-label> -->
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </div>
 </ion-content>
