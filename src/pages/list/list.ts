@@ -7,8 +7,10 @@ import { TodoServiceProvider } from '../../providers/todo-service/todo-service';
 })
 export class ListPage {
   myParam: string;
+  item;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, params: NavParams, private todoService: TodoServiceProvider) {
     this.myParam = params.get('myParam');
+    this.item = params.get('item');
   }
 
   dismiss() {

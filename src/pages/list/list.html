@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>
       <ion-item>
-        Edit Menu
+       Edit 
         <ion-icon class="closeButton" float-right (click)="dismiss()" name="close-circle"></ion-icon>
       </ion-item>
     </ion-title>
@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="newTodo=''" placeholder="Edit Text" class="textfield" name="newTodo">
+  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="newTodo=''" placeholder="{{item.newTodo}}" class="textfield" name="newTodo">
   </ion-input>
   <button ion-button block type="submit" (click)="saveNewList(newTodo)" (click)="dismiss()" [disabled]="newTodo===''">Edit</button>
 </ion-content>

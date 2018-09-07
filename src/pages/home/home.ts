@@ -13,7 +13,7 @@ export class HomePage {
   completed: boolean;
   myParam;
   count = 1;
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private todoService: TodoServiceProvider,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private todoService: TodoServiceProvider, public alertCtrl: AlertController) {
     this.todos = this.todoService.getTodo();
   }
 
@@ -32,10 +32,9 @@ export class HomePage {
     this.todos.splice(index, 1);
   }
 
-  openBasicModal(todo) {
+  openBasicModal(todo, item) {
     this.myParam = todo;
-    console.log(this.myParam)
-    let myModal = this.modalCtrl.create(ListPage, { 'myParam': this.myParam });
+    let myModal = this.modalCtrl.create(ListPage, { 'myParam': this.myParam, 'item': item });
     myModal.onDidDismiss(data => {
     });
     myModal.present();
