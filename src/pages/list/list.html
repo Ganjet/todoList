@@ -1,23 +1,16 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
+    <ion-title>
+      <ion-item>
+        Edit Menu
+        <ion-icon class="closeButton" float-right (click)="dismiss()" name="close-circle"></ion-icon>
+      </ion-item>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="newTodo=''" placeholder="Edit Text" class="textfield" name="newTodo">
+  </ion-input>
+  <button ion-button block type="submit" (click)="saveNewList(newTodo)" (click)="dismiss()" [disabled]="newTodo===''">Edit</button>
 </ion-content>

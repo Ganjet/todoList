@@ -1,18 +1,31 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+    <ion-title>TodoList</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content>
+  <ion-input [(ngModel)]="newTodo" type="text" (keyup.enter)="addTodo($event)" class="textfield" name="newTodo"  placeholder="Add new list"> </ion-input>
+  <button ion-button type="submit" (click)="addTodo($event)" [disabled]="newTodo===''">Add Todo </button>
+  <ion-item [hidden]="newTodo">
+    Type in a new todo...
+  </ion-item>
+  <ion-item [hidden]="!newTodo">
+    Typing: {{ newTodo }}
+  </ion-item>
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let todo of todoService.todos; let i=index">
+        <ion-label class="todos" [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</ion-label>
+        <ion-checkbox checked="false" [(ngModel)]="todo.completed"></ion-checkbox>
+        <ion-label text-right>
+          <button ion-button color="dark" tappable (click)="deleteTodo(i)">
+            <ion-icon name="close-circle"></ion-icon>
+          </button>
+          <button ion-button color="dark" tappable (click)="openBasicModal(i)">
+            <ion-icon name="create"></ion-icon>
+          </button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
